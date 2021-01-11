@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows10.0.18362</TargetFramework>
+    <TargetFrameworks>net5.0-windows10.0.18362;net472</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>Waf.MusicManager.Presentation</RootNamespace>
     <AssemblyName>MusicManager</AssemblyName>
@@ -11,6 +11,10 @@
     <ApplicationIcon>Resources\Images\MusicManager.ico</ApplicationIcon>
     <ApplicationManifest>Properties\App.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith(net4))">
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.18362.2005" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Waf.Wpf" Version="6.3.0-alpha1" />
@@ -26,7 +30,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
 
     <!-- Resources -->
-    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
+    <EmbeddedResource Update="Properties\Resources.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
     <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
 
     <Compile Update="Properties\Settings.Designer.cs">

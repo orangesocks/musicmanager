@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-windows10.0.18362</TargetFramework>
+    <TargetFrameworks>net5.0-windows10.0.18362;net472</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <AssemblyName>Waf.MusicManager.Applications</AssemblyName>
     <RootNamespace>Waf.MusicManager.Applications</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <CodeAnalysisRuleSet>..\MusicManager.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith(net4))">
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.18362.2005" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Waf.Wpf" Version="6.3.0-alpha1" />
